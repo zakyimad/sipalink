@@ -43,7 +43,7 @@ class DashboardLinkController extends Controller
             'link' => 'required|max:255|unique:sipalinks',
             'tags_id' => 'required',
             'description' => 'required',
-            'image' => 'null',
+            'image' => 'image|file|max:5120',
             'vpn' => 'required'
         ]);
 
@@ -54,6 +54,20 @@ class DashboardLinkController extends Controller
 
         $validatedData['created_by'] = auth()->user()->id;
         $validatedData['hit_counter'] = 0;
+
+        if($request->file('image')) {
+            $file = $request->file('image');
+            $filename = $validatedData['image']->getClientOriginalName();
+            // $filename = \Carbon\Carbon::now()->format('Y-m-d H-i').''.$file->getClientOriginalName();
+
+            if($request->oldImage){
+                // Storage::delete($request->oldImage);
+                $filePath = 'preview-images/' . $filename; // Replace $fileName with the actual file name
+                Storage::delete($filePath);
+            }
+            $file->move('preview-images', $filename);
+            $validatedData['image'] = $filename;
+        }
 
         Sipalink::create($validatedData);
 
@@ -93,7 +107,7 @@ class DashboardLinkController extends Controller
                 'tags_id' => 'required',
                 'description' => 'required',
                 'vpn' => 'required',
-                'image' => 'null'
+                'image' => 'image|file|max:5120'
             ]);
 
             if ($validatedData['vpn'] == "1")
@@ -101,9 +115,23 @@ class DashboardLinkController extends Controller
             else
                 $validatedData['vpn'] = false;
 
-                $validatedData['created_by'] = auth()->user()->id;
+            $validatedData['created_by'] = auth()->user()->id;
 
-                Sipalink::where('id', $link->id)->update($validatedData);
+            if($request->file('image')) {
+                $file = $request->file('image');
+                $filename = $validatedData['image']->getClientOriginalName();
+                // $filename = \Carbon\Carbon::now()->format('Y-m-d H-i').''.$file->getClientOriginalName();
+    
+                if($request->oldImage){
+                    // Storage::delete($request->oldImage);
+                    $filePath = 'preview-images/' . $filename; // Replace $fileName with the actual file name
+                    Storage::delete($filePath);
+                }
+                $file->move('preview-images', $filename);
+                $validatedData['image'] = $filename;
+            }
+
+            Sipalink::where('id', $link->id)->update($validatedData);
 
             return redirect('/dashboard/links')->with('success','Data telah berhasil diubah!');
         }

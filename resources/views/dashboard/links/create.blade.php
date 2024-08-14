@@ -31,7 +31,7 @@
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form method="post" action={{ url("/dashboard/links")}}>
+                    <form method="post" action={{ url("/dashboard/links")}} enctype="multipart/form-data">
                         @csrf
                         <div class="card-body">
                             <div class="form-group">
@@ -95,15 +95,18 @@
 
                             <div class="form-group">
                                 <label for="exampleInputFile">Preview Website (Optional)</label>
-                                <div class="input-group" name="image">
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="exampleInputFile">
-                                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                                    </div>
-                                    <div class="input-group-append">
-                                        <span class="input-group-text">Upload</span>
-                                    </div>
+                                <div class="input-group">
+                                  <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="exampleInputFile" name="image">
+                                    <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                  </div>
+                                  <div class="input-group-append">
+                                    <span class="input-group-text">Upload</span>
+                                  </div>
                                 </div>
+                                @error('image')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                         <!-- /.card-body -->
@@ -157,13 +160,6 @@
     <!-- AdminLTE -->
     <script src="/AdminLTE/dist/js/adminlte.js"></script>
 
-    <!-- OPTIONAL SCRIPTS -->
-    <script src="/AdminLTE/plugins/chart.js/Chart.min.js"></script>
-    <!-- AdminLTE for demo purposes -->
-    <script src="/AdmiunLTE/dist/js/demo.js"></script>
-    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="/AdminLTE/dist/js/pages/dashboard3.js"></script>
-
     <!-- DataTables  & Plugins -->
     <script src="/AdminLTE/plugins/datatables/jquery.dataTables.min.js"></script>
     <script src="/AdminLTE/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
@@ -177,6 +173,9 @@
     <script src="/AdminLTE/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
     <script src="/AdminLTE/plugins/datatables-buttons/js/buttons.print.min.js"></script>
     <script src="/AdminLTE/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+    <script src="/AdminLTE/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+
+
 
     <!-- Select2 -->
     <script src="/AdminLTE/plugins/select2/js/select2.full.min.js"></script>
@@ -203,6 +202,12 @@
             $('.select2bs4').select2({
             theme: 'bootstrap4'
             })
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            bsCustomFileInput.init();
         });
     </script>
 

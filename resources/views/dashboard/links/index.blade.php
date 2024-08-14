@@ -64,7 +64,13 @@
                                         <tr>
                                             <td></td>
                                             <td>{{$link->title}}</td>
-                                            <td>{{$link->link}}</td>
+                                            <td>
+                                                @if (strlen($link -> link) < 40)
+                                                    <p>{{$link->link}}  <a href={{url($link->link)}}><span class="float-right"><i class="fas fa-share-from-square"></i></span></a></p>
+                                                @else
+                                                    <p>{{ substr_replace($link -> link, "...", 30) }}  <a href={{$link->link}}><span class="float-right"><i class="fas fa-share-from-square"></i></span></a></p>
+                                                @endif
+                                            </td>
                                             <td>{{$link->description}}</td>
                                             <td><span class="badge" style="font-size: 1em; background-color: {{ $link->tags->color }}; color: white; ">{{$link->tags->title}}</span></td>
                                             <td>

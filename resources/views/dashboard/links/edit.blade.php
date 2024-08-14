@@ -97,15 +97,18 @@
 
                             <div class="form-group">
                                 <label for="exampleInputFile">Preview Website (Optional)</label>
-                                <div class="input-group" name="image">
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="exampleInputFile">
-                                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                                    </div>
-                                    <div class="input-group-append">
-                                        <span class="input-group-text">Upload</span>
-                                    </div>
+                                <div class="input-group">
+                                  <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="exampleInputFile" name="image">
+                                    <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                  </div>
+                                  <div class="input-group-append">
+                                    <span class="input-group-text">Upload</span>
+                                  </div>
                                 </div>
+                                @error('image')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                         <!-- /.card-body -->
@@ -169,6 +172,9 @@
     <!-- Select2 -->
     <script src={{asset("/AdminLTE/plugins/select2/js/select2.full.min.js")}}></script>
 
+    <!-- Image -->
+    <script src="/AdminLTE/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+
     <!-- Page specific script -->
     <script>
         $(function () {
@@ -191,6 +197,12 @@
             $('.select2bs4').select2({
             theme: 'bootstrap4'
             })
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            bsCustomFileInput.init();
         });
     </script>
 

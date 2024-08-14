@@ -23,4 +23,6 @@
     <link rel="stylesheet" href="../../plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
     <!-- Toastr -->
     <link rel="stylesheet" href="../../plugins/toastr/toastr.min.css">
+    <!-- Toastr -->
+    <link rel="icon" type="image/x-icon" href={{ asset("/AdminLTE/dist/img/favicon.png")}}>
 </header>

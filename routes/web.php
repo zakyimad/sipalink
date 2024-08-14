@@ -22,17 +22,15 @@ use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
 //     return view('index');
 // });
 
-Route::get('/', [SipalinkController::class, 'index'])->middleware('guest');
+Route::get('/', [SipalinkController::class, 'index']);
 
-Route::get('/links/{id}', [SipalinkController::class, 'show'])->middleware('guest');
+Route::get('/links/{id}', [SipalinkController::class, 'show']);
 
 // Route::get('/dashboard',function(){
 //     return view('dashboard.dashboard');
 // })->middleware('auth');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard.dashboard');
-})->name('dashboard');
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 Route::get('/dashboard/setting',function(){
     return view('dashboard.setting');

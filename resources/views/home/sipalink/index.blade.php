@@ -74,10 +74,16 @@
                         @if ($link->vpn == "1")
                             <img src="assets/img/vpn.png" style="position: absolute; top: 3px; width:40px;">
                         @endif
-                        {{-- <div class="icon"><i class="bx bxl-dribbble"></i></div> --}}
-                        <img src="assets/img/logo/{{$link->tags->slug}}.png" class="img-thumbnail mt-0 mb-2" alt="Preview">
-                        {{-- {{ image($link-> link) }} --}}
-                        <h4 class="mt-0 mb-0" style="text-align: center">{{ $link -> title }}</h4>
+                        <div class="row m-1" style="height: 15rem; overflow: hidden;">
+                            @if ($link->image != "")
+                                <img src="preview-images/{{$link->image}}" class="img-thumbnail mt-0 mb-2 p-0 w-100" style="object-fit: cover;" alt="Preview">
+                            @else
+                                <img src="assets/img/logo/{{$link->tags->slug}}.png" class="img-thumbnail mt-0 mb-2 p-0 w-100" style="object-fit: cover;" alt="Preview">
+                            @endif
+                        </div>
+                        <div class="row align-items-center" style="height: calc(2 * 1.5em);">
+                            <h5 class="mt-0 mb-0" style="color : #37517e; text-align: center;">{{ $link -> title }}</h5>
+                        </div>
                         {{-- <p>{{ $link -> link }}</p> --}}
 
                         @if (strlen($link -> link) < 30)
@@ -134,10 +140,16 @@
                         @if ($link->vpn == "1")
                             <img src="assets/img/vpn.png" style="position: absolute; top: 3px; margin-left: -5px; width:40px;">
                         @endif
-                        {{-- <div class="icon"><i class="bx bxl-dribbble"></i></div> --}}
-                        <img src="assets/img/logo/{{$link->tags->slug}}.png" class="img-thumbnail mt-0 mb-2" alt="Preview">
-                        {{-- {{ image($link-> link) }} --}}
-                        <h4 class="mt-0 mb-0" style="text-align: center">{{ $link -> title }}</h4>
+                        <div class="row m-1" style="height: 15rem; overflow: hidden;">
+                            @if ($link->image != "")
+                                <img src="preview-images/{{$link->image}}" class="img-thumbnail mt-0 mb-2 p-0 w-100" style="object-fit: cover;" alt="Preview">
+                            @else
+                                <img src="assets/img/logo/{{$link->tags->slug}}.png" class="img-thumbnail mt-0 mb-2 p-0 w-100" style="object-fit: cover;" alt="Preview">
+                            @endif
+                        </div>
+                        <div class="row align-items-center" style="height: calc(2 * 1.5em);">
+                            <h5 class="mt-0 mb-0" style="color : #37517e; text-align: center;">{{ $link -> title }}</h5>
+                        </div>
                         {{-- <p>{{ $link -> link }}</p> --}}
                         @if (strlen($link -> link) < 30)
                             <p class="mt-0 mb-0" style="text-align: center; color : black">{{ $link -> link }}</p>
@@ -191,10 +203,16 @@
                             @if ($link->vpn == "1")
                                 <img src="assets/img/vpn.png" style="position: absolute; top: 3px; left: 4px; width:40px;">
                             @endif
-
-                            <img src="assets/img/logo/{{$link->tags->slug}}.png" class="img-thumbnail mt-0 mb-2" alt="Preview">
-
-                            <h5 class="mt-0 mb-0" style="color : #37517e ">{{ $link -> title }}</h5>
+                            <div class="row m-1" style="height: 15rem; overflow: hidden;">
+                                @if ($link->image != "")
+                                    <img src="preview-images/{{$link->image}}" class="img-thumbnail mt-0 mb-2 p-0 w-100" style="object-fit: cover;" alt="Preview">
+                                @else
+                                    <img src="assets/img/logo/{{$link->tags->slug}}.png" class="img-thumbnail mt-0 mb-2 p-0 w-100" style="object-fit: cover;" alt="Preview">
+                                @endif
+                            </div>
+                            <div class="row align-items-center" style="height: calc(2 * 1.5em);">
+                                <h5 class="mt-0 mb-0" style="color : #37517e; text-align: center;">{{ $link -> title }}</h5>
+                            </div>
                             @if (strlen($link -> link) < 30)
                             <p class="mt-0 mb-0" style="color : black; font-size: 0.9em">{{ $link -> link }}</p>
                             @else
